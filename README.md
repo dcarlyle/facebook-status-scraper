@@ -13,6 +13,11 @@ $ python FacebookStatusScraper.py -p leehsienloong -s 2015-09-01 -e 2015-09-12
 $ python FacebookStatusScraper.py -p <facebook_id> -a <your fb app_id> -t <your fb app_secret> -s <start-date> -e <end-date> -S <use-simple-mode>
 ```
 
+##### Or launch the *HELP*:
+```bash
+$ python FacebookStatusScraper.py -h
+```
+
 ##### BTW, you should get your own ``app_id`` and ``app_secret`` from [https://developers.facebook.com/apps/](https://developers.facebook.com/apps/ "Facebook for Developers").
 
 ### Output:
@@ -22,8 +27,6 @@ $ python FacebookStatusScraper.py -p <facebook_id> -a <your fb app_id> -t <your 
 - "Simple Mode" basically excludes the the comments and replies, retaining only the status post and its related metadata. See this "simple mode" [sample](https://github.com/jovianlin/facebook-status-scraper/blob/master/output/leehsienloong_2016-01-18_210825_fb_page_feed_SIMPLE_MODE.csv) of Lee Hsien Loong's Facebook posts.
  
 ### More Examples can be found from the ``.ipynb`` files:
-- [Example 1](https://github.com/jovianlin/facebook-status-scraper/blob/master/examples/Example%201%20-%20Crawl%20Statuses%20Only%20(Simple%20Mode).ipynb)
-- [Example 2](https://github.com/jovianlin/facebook-status-scraper/blob/master/examples/Example%202%20-%20Crawl%20Statuses%2C%20Comments%2C%20and%20Replies%20(Normal%20Mode).ipynb)
-- [Example 3](https://github.com/jovianlin/facebook-status-scraper/blob/master/examples/Example%203%20-%20Crawl%20from%20a%20list%20of%20Status%20IDs.ipynb)
-
-
+- [Example 1](https://github.com/jovianlin/facebook-status-scraper/blob/master/example-1-crawl-statuses-only.ipynb)
+- [Example 2](https://github.com/jovianlin/facebook-status-scraper/blob/master/example-2-crawl-statuses-comments-and-replies.ipynb)
+- [Example 3](https://github.com/jovianlin/facebook-status-scraper/blob/master/example-3-crawl-from-a-list-of-status-ids.ipynb)
