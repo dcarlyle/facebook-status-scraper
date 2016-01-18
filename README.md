@@ -3,7 +3,7 @@ Scrapes/crawls/culls a Facebook handle's **statuses** as well as each status' **
 
 ### Usage:
 
-##### To crawl Facebook posts from ``leehsienloong`` starting from ``2015-09-01`` to ``2015-09-12``:
+##### For example, to crawl Facebook posts from ``leehsienloong`` starting from ``2015-09-01`` to ``2015-09-12``:
 ```bash
 $ python FacebookStatusScraper.py -p leehsienloong -s 2015-09-01 -e 2015-09-12
 ```
