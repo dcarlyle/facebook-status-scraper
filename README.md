@@ -1,28 +1,19 @@
 # Facebook Status Scraper
 Scrapes/crawls/culls a Facebook handle's **statuses** as well as each status' **comments** and each comment's **replies**.
 
-### To Run:
+### Usage:
 
-##### 1. Default: to crawl Facebook posts from ``leehsienloong`` starting from 2015-09-01 to 2015-09-12
+##### To crawl Facebook posts from ``leehsienloong`` starting from ``2015-09-01`` to ``2015-09-12``:
 ```bash
 $ python FacebookStatusScraper.py -p leehsienloong -s 2015-09-01 -e 2015-09-12
 ```
 
-##### 2. Or you could use the built-in prompt (as well as my personal FB access token :grin:):
+##### In general:
 ```bash
-$ python FacebookStatusScraper.py
-
-Enter a Facebook handle that you'd like to scrape: leehsienloong
-"extended" or "simple" way of scraping? (Default is "extended"): simple
-
-access_token: 814941615282783|6c27c730fae4caf43e126a003939d8b4
-page_id: leehsienloong
-
-Scraping "leehsienloong" Facebook Page (simple version): 2016-01-17 15:24:00.060872
-...
+$ python FacebookStatusScraper.py -p <facebook_id> -a <your fb app_id> -t <your fb app_secret> -s <start-date> -e <end-date> -S <use-simple-mode>
 ```
 
-BTW, you can get your own ``app_id`` and ``app_secret`` from [https://developers.facebook.com/apps/](https://developers.facebook.com/apps/ "Facebook for Developers").
+BTW, you should get your own ``app_id`` and ``app_secret`` from [https://developers.facebook.com/apps/](https://developers.facebook.com/apps/ "Facebook for Developers").
 
 ### Output:
 
