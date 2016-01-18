@@ -1,14 +1,12 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-
 import csv
 from datetime import datetime
 from dateutil import tz
 import json
 import time
 import urllib2
-
 
 def convert_to_local_time(date_str):
     from_zone = tz.tzutc()
@@ -413,11 +411,4 @@ if __name__ == "__main__":
     print '\naccess_token: %s' % access_token
     print 'page_id: %s\n' % page_id
     scrape_fb_page_feed_status(page_id, access_token, start_ts=start_ts, end_ts=end_ts, is_simple_mode=simple)
-    
-    
-
-
-
-
-
-
+# End of main
