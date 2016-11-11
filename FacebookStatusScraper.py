@@ -6,6 +6,7 @@ from datetime import datetime
 from dateutil import tz
 import json
 import time
+from termcolor import colored
 import urllib2
 
 def convert_to_local_time(date_str):
@@ -44,7 +45,7 @@ def request_until_succeed(url, max_tries=10, time_to_sleep=5):
 # All about COMMENTS (replies) #
 #==============================#
 def get_replies_of_comment_id(comment_id, access_token):
-    base = "https://graph.facebook.com"
+    base = "https://graph.facebook.com/v2.6"
     node = "/" + comment_id + "/comments" 
     parameters = "/?access_token=%s" % (access_token)        
     url = base + node + parameters
@@ -83,7 +84,7 @@ def get_replies_of_comment_id(comment_id, access_token):
 # All about COMMENTS (likes) #
 #============================#    
 def get_likes_of_comment_id(comment_id, access_token):
-    base = "https://graph.facebook.com"
+    base = "https://graph.facebook.com/v2.6"
     node = "/" + comment_id + "/likes" 
     parameters = "/?access_token=%s" % (access_token)
     url = base + node + parameters
@@ -119,9 +120,11 @@ def get_likes_of_comment_id(comment_id, access_token):
 # All about the JSON/DICTIONARY output (FB Page ID's FEED Data) #
 #===============================================================#
 def get_fb_page_feed_data(page_id, access_token, no_of_status_posts, likes_limit=1, comments_limit=100, start_ts=None, end_ts=None):
-    base = "https://graph.facebook.com"
-    node = "/" + page_id + "/feed" 
-    parameters = "/?fields=message,link,created_time,type,name,id,likes.limit(%s).summary(true),comments.limit(%s).summary(true),shares&limit=%s&access_token=%s" % (likes_limit, comments_limit, no_of_status_posts, access_token)
+    base = "https://graph.facebook.com/v2.6"
+    #node = "/" + page_id + "/feed" 
+    node = "/" + page_id + "/posts" 
+    #parameters = "/?fields=message,link,created_time,type,name,id,likes.limit(%s).summary(true),comments.limit(%s).summary(true),shares&limit=%s&access_token=%s" % (likes_limit, comments_limit, no_of_status_posts, access_token)
+    parameters = "/?fields=message,link,created_time,type,name,id,likes.limit(%s).summary(true),comments.limit(%s).summary(true),reactions.limit(0).summary(true),shares&limit=%s&access_token=%s" % (likes_limit, comments_limit, no_of_status_posts, access_token)
     if start_ts is not None:
         parameters += '&since=%d' % start_ts
     if end_ts is not None:
@@ -133,11 +136,15 @@ def get_fb_page_feed_data(page_id, access_token, no_of_status_posts, likes_limit
 # All about the JSON/DICTIONARY output (Status Data) #
 #====================================================#
 def get_status_data(status_id, access_token, likes_limit=1, comments_limit=100):
-    base = "https://graph.facebook.com"
+    base = "https://graph.facebook.com/v2.6"
     node = "/" + status_id + "/" 
-    parameters = "/?fields=message,link,created_time,type,name,id,likes.limit(%s).summary(true),comments.limit(%s).summary(true),shares&limit=1&access_token=%s" % (likes_limit, comments_limit, access_token)
+    #parameters = "/?fields=message,link,created_time,type,name,id,likes.limit(%s).summary(true),comments.limit(%s).summary(true),shares&limit=1&access_token=%s" % (likes_limit, comments_limit, access_token)
+    parameters = "/?fields=message,link,created_time,type,name,id,likes.limit(%s).summary(true),comments.limit(%s).summary(true),reactions.type(LIKE).limit(0).summary(true).as(reactions_like),reactions.type(LOVE).limit(0).summary(true).as(reactions_love),reactions.type(WOW).limit(0).summary(true).as(reactions_wow),reactions.type(HAHA).limit(0).summary(true).as(reactions_haha),reactions.type(SAD).limit(0).summary(true).as(reactions_sad),reactions.type(ANGRY).limit(0).summary(true).as(reactions_angry),shares&limit=1&access_token=%s" % (likes_limit, comments_limit, access_token)
     url = base + node + parameters
-    return json.loads(request_until_succeed(url))
+    # return json.loads(request_until_succeed(url))
+    output_dict = json.loads(request_until_succeed(url))
+    print colored(json.dumps(output_dict), 'yellow')
+    return output_dict
 
 ###########################################
 #                                         #
@@ -370,9 +377,9 @@ if __name__ == "__main__":
         sys.exit(2)
 
     print_help = False
-    app_id     = '814941615282783'
-    app_secret = '6c27c730fae4caf43e126a003939d8b4'
-    page_id    = None
+    app_id     = '631289457043115' #'814941615282783'
+    app_secret = 'c7da9b49e15fa5e8848d1f933823056c' # '6c27c730fae4caf43e126a003939d8b4'
+    page_id    = 'sohruiyong' # 'leehsienloong' # 125845680811480'
     simple     = False
     start_ts   = None
     end_ts     = None
